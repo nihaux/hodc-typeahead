@@ -1,6 +1,6 @@
 {
   "name": "hodc-typeahead",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a typeahead Higher Order Draft Component",
   "main": "dist/hodc-typeahead.js",
   "module": "src/index.js",
