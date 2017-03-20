@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { replaceText, withTypeahead } from '../src';
 import countries from './countries';
-
+import content from './content';
 
 
 const searchCountries = (string) =>
@@ -26,7 +26,7 @@ class Sandbox extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createWithContent(convertFromRaw(content)),
     };
   }
   onChange = (editorState) => {
@@ -35,17 +35,7 @@ class Sandbox extends React.Component{
     });
   };
   render = () => (
-    <div>
-      <h1>Typeahead Editor Sandbox</h1>
-      <p>
-        Type @ and some characters to search a country.<br/>
-        on click, the country code will be inserted.<br/>
-        You can use keyboard to navigate the typeahead.
-      </p>
-      <p>
-        <TypeaheadEditor onChange={this.onChange} editorState={this.state.editorState} />
-      </p>
-    </div>
+    <TypeaheadEditor onChange={this.onChange} editorState={this.state.editorState} />
   );
 }
 
