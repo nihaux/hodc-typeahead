@@ -103,7 +103,7 @@ const withTypeahead = ({
       if (!selRect) {
         return;
       }
-      const top = selRect.bottom;
+      const top = selRect.top;
       const left = selRect.left - searchString.length - startToken.length;
       this.setState({
         showModal: true,
