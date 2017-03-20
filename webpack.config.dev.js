@@ -5,14 +5,17 @@ const path = require('path');
 
 const config = {
   entry: [
-    path.resolve(__dirname,'./src/index.js'),
+    path.resolve(__dirname,'./sandbox/sandbox.js'),
   ],
-  devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'hodc-typeahead.js',
-    library: 'hodc-typeahead',
-    libraryTarget: 'umd',
+    path: __dirname,
+    publicPath: '/',
+    filename: 'index.js',
+  },
+  devtool: 'source-map',
+  devServer: {
+    inline: true,
+    contentBase: path.resolve(__dirname,'./sandbox'),
   },
   module: {
     rules: [
@@ -22,10 +25,6 @@ const config = {
         exclude: /node_modules/,
       },
     ]
-  },
-  resolve: {
-    modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    extensions: ['.json', '.js']
   },
 };
 

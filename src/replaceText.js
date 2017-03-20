@@ -1,4 +1,6 @@
-const replaceText = (replaceWith, entityKey, editorState, textToReplace) => {
+import { Modifier, EditorState } from 'draft-js';
+
+const replaceText = (replaceWith, editorState, textToReplace, entityKey = null) => {
   const contentState = editorState.getCurrentContent();
   const selection = editorState.getSelection();
   const entitySelection = selection.set(

@@ -171,20 +171,18 @@ const withTypeahead = ({
           break;
         }
       }
-    }
+    };
 
     onClick = (suggest) => {
       this.setState({
         showModal: false,
       });
       if (onClick) {
-        console.log(suggest, this.state.textToReplace);
         const newEditorState = onClick(
           suggest,
           this.props.editorState,
           this.state.textToReplace
         );
-        console.log('new editor state', newEditorState);
         if (newEditorState) {
           this.props.onChange(newEditorState);
         }

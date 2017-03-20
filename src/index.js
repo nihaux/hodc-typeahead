@@ -1,7 +1,2 @@
-import replaceText from './replaceText';
-import withTypeahead from './withTypeahead';
-
-export default {
-  replaceText,
-  withTypeahead,
-};
+export replaceText from './replaceText';
+export withTypeahead from './withTypeahead';
