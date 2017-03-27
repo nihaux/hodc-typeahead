@@ -99,8 +99,8 @@ const withTypeahead = ({
       if (!selRect) {
         return;
       }
-      // very very hugly hack for header-two
-      const top = block.type === 'header-two' ? selRect.bottom : selRect.top;
+
+      const top = selRect.bottom;
       const left = selRect.left - searchString.length - startToken.length;
       this.setState({
         showModal: true,
@@ -143,6 +143,7 @@ const withTypeahead = ({
         return;
       }
       switch (event.key) {
+        case 'Tab':
         case 'ArrowDown': {
           event.preventDefault();
           if (this.state.idx === this.state.suggests.length) {
