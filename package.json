@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "description": "a typeahead Higher Order Draft Component",
   "main": "dist/hodc-typeahead.js",
-  "module": "src/index.js",
   "repository": "https://github.com/Nihaux/hodc-typeahead",
   "author": "Nihau <nicolas.hauseux@gmail.com>",
   "license": "MIT",
