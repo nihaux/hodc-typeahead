@@ -4,7 +4,7 @@ const replaceText = (replaceWith, editorState, textToReplace, entityKey = null) 
   const contentState = editorState.getCurrentContent();
   const selection = editorState.getSelection();
   const entitySelection = selection.set(
-    'anchorOffset', selection.getFocusOffset() - textToReplace.length
+    'anchorOffset', selection.getFocusOffset() - textToReplace.length,
   );
   const contentStateWithEmoji = Modifier.replaceText(
     contentState,
