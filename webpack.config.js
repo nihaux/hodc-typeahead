@@ -1,11 +1,11 @@
-/*global __dirname, require, module*/
+/* global __dirname, require, module */
 
-const webpack = require('webpack');
+require('webpack');
 const path = require('path');
 
 const config = {
   entry: [
-    path.resolve(__dirname,'./src/index.js'),
+    path.resolve(__dirname, './src/index.js'),
   ],
   devtool: 'source-map',
   output: {
@@ -21,11 +21,11 @@ const config = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    extensions: ['.json', '.js']
+    extensions: ['.json', '.js', '.jsx'],
   },
 };
 
