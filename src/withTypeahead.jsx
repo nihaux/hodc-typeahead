@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  CompositeDecorator,
-  Modifier,
-  EditorState,
-  getVisibleSelectionRect,
-} from 'draft-js';
+import { getVisibleSelectionRect } from 'draft-js';
 
 /*
  * Higher Order Draft Component, allow to have typeahead feature on a draftjs editor
@@ -45,7 +40,7 @@ const withTypeahead = ({
    */
   breakOnWhitespace = false,
 }) => (Editor) => {
-  return class TypeaheadEditor extends React.Component {
+  class TypeaheadEditor extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -56,6 +51,7 @@ const withTypeahead = ({
     componentDidMount() {
       document.addEventListener('keydown', this.handleKeyDown, true);
     }
+
     componentWillUnmount() {
       document.removeEventListener('keydown', this.handleKeyDown, true);
     }
@@ -103,7 +99,8 @@ const withTypeahead = ({
       if (!selRect) {
         return;
       }
-      const top = selRect.top;
+      // very very hugly hack for header-two
+      const top = block.type === 'header-two' ? selRect.bottom : selRect.top;
       const left = selRect.left - searchString.length - startToken.length;
       this.setState({
         showModal: true,
@@ -124,11 +121,28 @@ const withTypeahead = ({
       });
     }
 
+
+    onClick = (suggest) => {
+      this.setState({
+        showModal: false,
+      });
+      if (onClick) {
+        const newEditorState = onClick(
+          suggest,
+          this.props.editorState,
+          this.state.textToReplace,
+        );
+        if (newEditorState) {
+          this.props.onChange(newEditorState);
+        }
+      }
+    };
+
     handleKeyDown = (event) => {
       if (!this.state.showModal) {
         return;
       }
-      switch(event.key) {
+      switch (event.key) {
         case 'ArrowDown': {
           event.preventDefault();
           if (this.state.idx === this.state.suggests.length) {
@@ -170,33 +184,22 @@ const withTypeahead = ({
           });
           break;
         }
+
+        default:
+          break;
       }
     };
 
-    onClick = (suggest) => {
-      this.setState({
-        showModal: false,
-      });
-      if (onClick) {
-        const newEditorState = onClick(
-          suggest,
-          this.props.editorState,
-          this.state.textToReplace
-        );
-        if (newEditorState) {
-          this.props.onChange(newEditorState);
-        }
-      }
-    };
 
     render = () => (
       <div>
         <ul
           style={
-            Object.assign({
+            Object.assign(
+              {
                 display: this.state.showModal ? 'block' : 'none',
               },
-              this.state.style
+              this.state.style,
             )
           }
         >
@@ -215,6 +218,11 @@ const withTypeahead = ({
         <Editor {...this.props} />
       </div>
     );
+  }
+
+  TypeaheadEditor.propTypes = {
+    editorState: React.PropTypes.obj.isRequired,
+    onChange: React.PropTypes.func.isRequired,
   };
 };
 

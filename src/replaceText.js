@@ -18,11 +18,9 @@ const replaceText = (replaceWith, editorState, textToReplace, entityKey = null) 
     contentStateWithEmoji.getSelectionAfter(),
     ' ',
   );
-  const nextEditorState = EditorState.push(
-    editorState, finalContentState, 'insert-characters'
+  return EditorState.push(
+    editorState, finalContentState, 'insert-characters',
   );
-
-  return nextEditorState;
 };
 
 export default replaceText;
