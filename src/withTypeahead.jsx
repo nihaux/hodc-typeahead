@@ -39,6 +39,17 @@ const withTypeahead = ({
    * should a whitespace break the search string
    */
   breakOnWhitespace = false,
+  /*
+   * default list style
+   */
+  listStyle = {
+    width: '300px',
+    listStyleType: 'none',
+    border: '1px black solid',
+    zIndex: 10000,
+    background: 'white',
+    padding: 0,
+  },
 }) => (Editor) => {
   class TypeaheadEditor extends React.Component {
     constructor(props) {
@@ -106,17 +117,14 @@ const withTypeahead = ({
         showModal: true,
         suggests,
         idx: 0,
-        style: {
-          position: 'absolute',
-          top,
-          left,
-          width: '300px',
-          listStyleType: 'none',
-          border: '1px black solid',
-          zIndex: 10000,
-          background: 'white',
-          padding: 0,
-        },
+        style: Object.assign(
+          listStyle,
+          {
+            position: 'absolute',
+            top,
+            left,
+          },
+        ),
         textToReplace,
       });
     }
