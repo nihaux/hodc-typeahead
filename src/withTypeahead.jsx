@@ -221,9 +221,11 @@ const withTypeahead = ({
   }
 
   TypeaheadEditor.propTypes = {
-    editorState: React.PropTypes.obj.isRequired,
+    editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
   };
+
+  return TypeaheadEditor;
 };
 
 export default withTypeahead;
