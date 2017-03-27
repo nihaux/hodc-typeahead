@@ -1,9 +1,10 @@
 {
   "name": "hodc-typeahead",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a typeahead Higher Order Draft Component",
+  "keywords": ["draft-js", "hoc", "react"],
   "main": "dist/hodc-typeahead.js",
-  "repository": "https://github.com/Nihaux/hodc-typeahead",
+  "repository": "https://github.com/nihaux/hodc-typeahead",
   "author": "Nihau <nicolas.hauseux@gmail.com>",
   "license": "MIT",
   "scripts": {
